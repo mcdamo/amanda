@@ -11,7 +11,7 @@ pkg install p5-json p5-encode
 Install build-dependenices, optional _libxslt_ and _docbook_ required for **manpage**. Tip: to also build [amplot](https://wiki.zmanda.com/man/amplot.8.html) add _gnuplot_ package.
 ```
 pkg install automake autoconf bison flex glib swig pkgconf gtar gzip gmake \
-   libxslt docbook-xsl docbook-xml
+   openssl-devel libxslt docbook-xsl docbook-xml
 ```
 
 ## Build
@@ -47,4 +47,17 @@ gmake
 
 ```
 gmake install
+```
+
+## Upgrading
+When upgrading from a previous source build be sure to clean the old install _before_ rebuilding, else the `make install` step can fail while running perl tests.
+
+This can be done with the provided scripts
+```
+gmake uninstall
+```
+
+Alternatively simply remove the previous perl libraries
+```
+rm -rf /usr/local/lib/perl5/site_perl/auto/Amanda
 ```
